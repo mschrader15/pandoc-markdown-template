@@ -6,10 +6,11 @@ typeset:
 	pandoc                          \
 	  --from         markdown       \
 	  --to           latex          \
-	  --template     template.tex   \
+	  --template     template_simple.tex   \
 	  --out          report-bib.pdf \
 	  --pdf-engine   xelatex        \
-	  --bibliography biblio.bib     \
+	  --bibliography "/Users/max/Notes/garden/_citations/Traffic_State_Estimation.bib"     \
 	  --csl style.csl               \
 	  --citeproc					\
-	  $(FILES)
+	  "/Users/max/Notes/garden/Tasks/WIP/School/Optimal Control & Estimation Project.md" \
+	  "./bibliography.md"

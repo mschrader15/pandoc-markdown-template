@@ -1,0 +1,112 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+% -----------------
+% START OF PREAMBLE
+% -----------------
+\documentclass[12pt,a4paper]{scrartcl}
+
+
+% Commands
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+
+% Packages
+\usepackage{fontspec}
+\usepackage{float}
+\usepackage{eurosym}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{upquote}
+\usepackage{microtype}
+\usepackage{polyglossia}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr}
+\usepackage[setpagesize=false,
+            unicode=false,
+            colorlinks=true,
+            urlcolor=blue,
+            linkcolor=black]{hyperref}
+
+
+% Polyglossia settings
+\setmainlanguage{english} % or danish
+\addto\captionsenglish{%
+  \renewcommand{\contentsname}{Table of Contents}
+}
+\addto\captionsdanish{%
+  \renewcommand{\contentsname}{Indholdsfortegnelse}
+}
+
+% Required fix for fancyhdr
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+% Fancy headers and footers settings
+\pagestyle{fancy}
+\lhead{$left-header$}
+\rhead{$right-header$}
+
+% Required for syntax highlighting
+$highlighting-macros$
+
+
+% Don't let images overflow the page
+% Can still explicit set width/height/options for an image
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+% Make links footnotes instead of hotlinks
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+
+
+% Avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+
+% No paragraph indentation
+% and set space between paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em} % Prevent overfull lines
+
+% adaptation to the upgrade of Pandoc, otherwise error would occur.
+% Fix per https://stackoverflow.com/a/67244130
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}
+ {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+ \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+ {\par}
+$endif$ 
+
+% fix the images in there position
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+
+% -----------------
+%  END OF PREAMBLE
+% -----------------
+\begin{document}
+
+\begin{center}
+  \hfill \break%
+  $if(title)$\Huge{$title$}\\[0.5em]$endif$
+  $if(authors)$\Large{$authors$}\\[2.5em]$endif$
+\end{center}
+
+$body$
+
+\end{document}
